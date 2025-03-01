@@ -1,0 +1,1974 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Духовный рост в Рамадан</title>
+    <style>
+        :root {
+            /* Исламская цветовая палитра */
+            --primary: #0d4a3e; /* Темно-зеленый */
+            --secondary: #1d7874; /* Зеленый */
+            --accent: #679289; /* Светло-зеленый */
+            --light: #f4ebd9; /* Светлый бежевый */
+            --gold: #d4af37; /* Золотой */
+            --dark: #0a2e2a; /* Темный фон */
+            --text: #f4ebd9; /* Текст светлый */
+            --glass: rgba(13, 74, 62, 0.25); /* Стеклянный эффект */
+            --glass-border: rgba(244, 235, 217, 0.2); /* Граница стекла */
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, var(--dark), var(--primary));
+            color: var(--text);
+            min-height: 100vh;
+            padding: 20px;
+            line-height: 1.6;
+            background-attachment: fixed;
+        }
+
+        /* Контейнер презентации */
+        .presentation-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        /* Заголовок */
+        .app-header {
+            text-align: center;
+            margin-bottom: 30px;
+            animation: fadeInDown 1s ease;
+        }
+
+        .app-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            color: var(--light);
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .app-header p {
+            font-size: 1.2rem;
+            color: var(--light);
+            opacity: 0.9;
+        }
+
+        /* Навигация */
+        .nav-container {
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            border: 1px solid var(--glass-border);
+            padding: 15px;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        .week-nav {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .week-btn {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid var(--glass-border);
+            color: var(--light);
+            padding: 10px 20px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+            backdrop-filter: blur(5px);
+        }
+
+        .week-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .week-btn.active {
+            background: var(--accent);
+            color: var(--dark);
+            border-color: var(--accent);
+        }
+
+        /* Слайды */
+        .slides-container {
+            position: relative;
+            min-height: 500px;
+        }
+
+        .slide {
+            display: none;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .slide.active {
+            display: block;
+            opacity: 1;
+            animation: fadeIn 0.5s ease forwards;
+        }
+
+        /* Карточки дней */
+        .days-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .day-card {
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            border: 1px solid var(--glass-border);
+            padding: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .day-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+            border-color: var(--gold);
+        }
+
+        .day-header {
+            border-bottom: 1px solid var(--glass-border);
+            padding-bottom: 10px;
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .day-title {
+            font-size: 1.3rem;
+            color: var(--light);
+            font-weight: 600;
+        }
+
+        .day-subtitle {
+            font-size: 1rem;
+            color: var(--gold);
+            font-style: italic;
+        }
+
+        .task-list {
+            list-style-type: none;
+            margin: 15px 0;
+            flex-grow: 1;
+        }
+
+        .task-item {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .task-checkbox {
+            appearance: none;
+            -webkit-appearance: none;
+            width: 22px;
+            height: 22px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid var(--accent);
+            border-radius: 5px;
+            cursor: pointer;
+            position: relative;
+            margin-top: 3px;
+        }
+
+        .task-checkbox:checked {
+            background: var(--accent);
+        }
+
+        .task-checkbox:checked::after {
+            content: '✓';
+            color: var(--dark);
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .task-text {
+            flex-grow: 1;
+        }
+
+        /* Счетчик */
+        .counter-container {
+            display: flex;
+            align-items: center;
+            margin-top: 10px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            padding: 10px;
+        }
+
+        .counter-label {
+            flex-grow: 1;
+            font-size: 0.9rem;
+        }
+
+        .counter-controls {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .counter-btn {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            border: none;
+            background: var(--accent);
+            color: var(--dark);
+            font-size: 1.2rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+        }
+
+        .counter-btn:hover {
+            background: var(--gold);
+        }
+
+        .counter-value {
+            min-width: 40px;
+            text-align: center;
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: var(--light);
+        }
+
+        .counter-target {
+            font-size: 0.8rem;
+            color: var(--gold);
+            margin-left: 5px;
+        }
+
+        /* Прогресс */
+        .day-progress {
+            margin-top: auto;
+            padding-top: 15px;
+            border-top: 1px solid var(--glass-border);
+        }
+
+        .progress-bar {
+            height: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+            overflow: hidden;
+            margin-top: 5px;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: var(--accent);
+            border-radius: 4px;
+            width: 0%;
+            transition: width 0.5s ease;
+        }
+
+        .progress-text {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.8rem;
+            margin-top: 5px;
+        }
+
+        /* Навигация по дням */
+        .day-navigation {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+            padding: 15px;
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            border: 1px solid var(--glass-border);
+        }
+
+        .nav-btn {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid var(--glass-border);
+            color: var(--light);
+            padding: 10px 20px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .nav-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        /* Принципы */
+        .principles-card {
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            border: 1px solid var(--glass-border);
+            padding: 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            animation: fadeIn 1s ease;
+        }
+
+        .principles-title {
+            color: var(--gold);
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+            text-align: center;
+        }
+
+        .principles-list {
+            list-style-type: none;
+        }
+
+        .principles-list li {
+            margin-bottom: 10px;
+            padding-left: 25px;
+            position: relative;
+        }
+
+        .principles-list li::before {
+            content: '☪';
+            position: absolute;
+            left: 0;
+            color: var(--gold);
+        }
+
+        /* Анимации */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            animation: fadeIn 0.6s ease forwards;
+        }
+
+        .fade-in-up {
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+        /* Адаптивность */
+        @media (max-width: 768px) {
+            .days-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .app-header h1 {
+                font-size: 1.8rem;
+            }
+            
+            .week-nav {
+                flex-direction: column;
+            }
+            
+            .week-btn {
+                width: 100%;
+                text-align: center;
+            }
+        }
+
+        /* Декоративные элементы */
+        .islamic-pattern {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><path fill="none" stroke="rgba(212, 175, 55, 0.1)" stroke-width="1" d="M25,25 L75,25 L75,75 L25,75 Z M0,0 L100,100 M100,0 L0,100 M50,0 L50,100 M0,50 L100,50"/></svg>');
+            pointer-events: none;
+            z-index: -1;
+        }
+    </style>
+</head>
+<body>
+    <div class="islamic-pattern"></div>
+    <div class="presentation-container">
+        <header class="app-header">
+            <h1>30-дневный адаптивный план духовного роста в Рамадан</h1>
+            <p>Следование Корану, хадисам Аль-Бухари и Муслима. Ахлюс-Сунна.</p>
+        </header>
+
+        <div class="principles-card fade-in">
+            <h2 class="principles-title">Основные принципы</h2>
+            <ul class="principles-list">
+                <li>Адаптивность: Начинаем с малого, усиливаем постепенно.</li>
+                <li>Баланс поклонения и благих дел.</li>
+                <li>Искренность в намерении – всё ради довольства Аллаха.</li>
+                <li>Прощение грехов – фокус на тауба, астагфар, зикр и милостыню.</li>
+            </ul>
+        </div>
+
+        <div class="nav-container">
+            <div class="week-nav">
+                <button class="week-btn active" data-week="intro">Обзор</button>
+                <button class="week-btn" data-week="week1">Неделя 1</button>
+                <button class="week-btn" data-week="week2">Неделя 2</button>
+                <button class="week-btn" data-week="week3">Неделя 3</button>
+                <button class="week-btn" data-week="week4">Неделя 4</button>
+                <button class="week-btn" data-week="summary">Итоги</button>
+            </div>
+        </div>
+
+        <div class="slides-container">
+            <!-- Слайд с обзором -->
+            <div class="slide active" id="slide-intro">
+                <div class="principles-card fade-in-up">
+                    <h2 class="principles-title">Ваш путь духовного роста</h2>
+                    <p style="text-align: center; margin-bottom: 20px;">
+                        Этот 30-дневный план поможет вам постепенно укрепить свою связь с Аллахом, 
+                        очистить душу и развить благие привычки, которые останутся с вами и после Рамадана.
+                    </p>
+                    
+                    <div style="margin: 30px 0; text-align: center;">
+                        <div style="display: inline-block; text-align: center; margin: 0 15px;">
+                            <div style="font-size: 2rem; color: var(--gold);">7</div>
+                            <div>Дней очищения</div>
+                        </div>
+                        <div style="display: inline-block; text-align: center; margin: 0 15px;">
+                            <div style="font-size: 2rem; color: var(--gold);">7</div>
+                            <div>Дней укрепления</div>
+                        </div>
+                        <div style="display: inline-block; text-align: center; margin: 0 15px;">
+                            <div style="font-size: 2rem; color: var(--gold);">6</div>
+                            <div>Дней дисциплины</div>
+                        </div>
+                        <div style="display: inline-block; text-align: center; margin: 0 15px;">
+                            <div style="font-size: 2rem; color: var(--gold);">10</div>
+                            <div>Дней поиска Ляйлятуль-Кадр</div>
+                        </div>
+                    </div>
+                    
+                    <p style="text-align: center;">
+                        Выберите неделю выше, чтобы начать свой путь, или нажмите кнопку ниже.
+                    </p>
+                    
+                    <div style="text-align: center; margin-top: 30px;">
+                        <button class="nav-btn" onclick="changeWeek('week1')" style="margin: 0 auto; display: inline-flex;">
+                            Начать путь <span style="margin-left: 8px;">→</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Неделя 1 -->
+            <div class="slide" id="slide-week1">
+                <h2 style="text-align: center; margin-bottom: 20px; color: var(--gold);">Неделя 1: Начало пути – очищение и намерение</h2>
+                
+                <div class="days-grid">
+                    <!-- День 1 -->
+                    <div class="day-card fade-in-up" style="animation-delay: 0.1s;">
+                        <div class="day-header">
+                            <div>
+                                <div class="day-title">День 1</div>
+                                <div class="day-subtitle">Покаяние и прощение</div>
+                            </div>
+                            <div style="color: var(--gold);">1/30</div>
+                        </div>
+                        
+                        <ul class="task-list">
+                            <li class="task-item">
+                                <input type="checkbox" class="task-checkbox" id="day1-task1">
+                                <div class="task-text">
+                                    <label for="day1-task1">100 раз Астагфируллах – искреннее покаяние</label>
+                                    <div class="counter-container">
+                                        <div class="counter-label">Счетчик:</div>
+                                        <div class="counter-controls">
+                                            <button class="counter-btn" onclick="decrementCounter('counter-day1-1')">-</button>
+                                            <div class="counter-value" id="counter-day1-1">0</div>
+                                            <button class="counter-btn" onclick="incrementCounter('counter-day1-1', 100)">+</button>
+                                            <div class="counter-target">/100</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="task-item">
+                                <input type="checkbox" class="task-checkbox" id="day1-task2">
+                                <div class="task-text">
+                                    <label for="day1-task2">Соверши 2 ракаата Тауба-намаза</label>
+                                </div>
+                            </li>
+                            <li class="task-item">
+                                <input type="checkbox" class="task-checkbox" id="day1-task3">
+                                <div class="task-text">
+                                    <label for="day1-task3">Прочитай Суру Аль-Фатиха, Аль-Ихляс, Аль-Фаляк, Ан-Нас 3 раза</label>
+                                </div>
+                            </li>
+                            <li class="task-item">
+                                <input type="checkbox" class="task-checkbox" id="day1-task4">
+                                <div class="task-text">
+                                    <label for="day1-task4">Сделай 1 доброе дело</label>
+                                </div>
+                            </li>
+                        </ul>
+                        
+                        <div class="day-progress">
+                            <div>Прогресс дня</div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" id="progress-day1"></div>
+                            </div>
+                            <div class="progress-text">
+                                <span>0%</span>
+                                <span id="progress-text-day1">0/4 выполнено</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- День 2 -->
+                    <div class="day-card fade-in-up" style="animation-delay: 0.2s;">
+                        <div class="day-header">
+                            <div>
+                                <div class="day-title">День 2</div>
+                                <div class="day-subtitle">Вспоминание Аллаха</div>
+                            </div>
+                            <div style="color: var(--gold);">2/30</div>
+                        </div>
+                        
+                        <ul class="task-list">
+                            <li class="task-item">
+                                <input type="checkbox" class="task-checkbox" id="day2-task1">
+                                <div class="task-text">
+                                    <label for="day2-task1">33 раза СубханАллах, 33 раза Альхамдулиллях, 34 раза Аллаху Акбар перед сном</label>
+                                </div>
+                            </li>
+                            <li class="task-item">
+                                <input type="checkbox" class="task-checkbox" id="day2-task2">
+                                <div class="task-text">
+                                    <label for="day2-task2">70 раз "Ла иляха илля Аллах"</label>
+                                    <div class="counter-container">
+                                        <div class="counter-label">Счетчик:</div>
+                                        <div class="counter-controls">
+                                            <button class="counter-btn" onclick="decrementCounter('counter-day2-1')">-</button>
+                                            <div class="counter-value" id="counter-day2-1">0</div>
+                                            <button class="counter-btn" onclick="incrementCounter('counter-day2-1', 70)">+</button>
+                                            <div class="counter-target">/70</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="task-item">
+                                <input type="checkbox" class="task-checkbox" id="day2-task3">
+                                <div class="task-text">
+                                    <label for="day2-task3">Прочитай 2-4 страницы Корана</label>
+                                </div>
+                            </li>
+                        </ul>
+                        
+                        <div class="day-progress">
+                            <div>Прогресс дня</div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" id="progress-day2"></div>
+                            </div>
+                            <div class="progress-text">
+                                <span>0%</span>
+                                <span id="progress-text-day2">0/3 выполнено</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- День 3 -->
+                    <div class="day-card fade-in-up" style="animation-delay: 0.3s;">
+                        <div class="day-header">
+                            <div>
+                                <div class="day-title">День 3</div>
+                                <div class="day-subtitle">Дуа и отказ от грехов</div>
+                            </div>
+                            <div style="color: var(--gold);">3/30</div>
+                        </div>
+                        
+                        <ul class="task-list">
+                            <li class="task-item">
+                                <input type="checkbox" class="task-checkbox" id="day3-task1">
+                                <div class="task-text">
+                                    <label for="day3-task1">3 раза Дуа о прощении: "Аллахумма иннака афуввун, тухиббул афва, фа'фу анни"</label>
+                                </div>
+                            </li>
+                            <li class="task-item">
+                                <input type="checkbox" class="task-checkbox" id="day3-task2">
+                                <div class="task-text">
+                                    <label for="day3-task2">Сдержи себя от одного греха (например, гнев, сплетни)</label>
+                                </div>
+                            </li>
+                            <li class="task-item">
+                                <input type="checkbox" class="task-checkbox" id="day3-task3">
+                                <div class="task-text">
+                                    <label for="day3-task3">Дай милостыню (даже 10-50 рублей)</label>
+                                </div>
+                            </li>
+                        </ul>
+                        
+                        <div class="day-progress">
+                            <div>Прогресс дня</div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" id="progress-day3"></div>
+                            </div>
+                            <div class="progress-text">
+                                <span>0%</span>
+                                <span id="progress-text-day3">0/3 выполнено</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- День 4 -->
+                    <div class="day-card fade-in-up" style="animation-delay: 0.4s;">
+                        <div class="day-header">
+                            <div>
+                                <div class="day-title">День 4</div>
+                                <div class="day-subtitle">Шукр и помощь людям</div>
+                            </div>
+                            <div style="color: var(--gold);">4/30</div>
+                        </div>
+                        
+                        <ul class="task-list">
+                            <li class="task-item">
+                                <input type="checkbox" class="task-checkbox" id="day4-task1">
+                                <div class="task-text">
+                                    <label for="day4-task1">2 ракаата Шукр-намаза за благодарность</label>
+                                </div>
+                            </li>
+                            <li class="task-item">
+                                <input type="checkbox" class="task-checkbox" id="day4-task2">
+                                <div class="task-text">
+                                    <label for="day4-task2">Улыбнись каждому с чистым намерением</label>
+                                </div>
+                            </li>
+                            <li class="task-item">
+                                <input type="checkbox" class="task-checkbox" id="day4-task3">
+                                <div class="task-text">
+                                    <label for="day4-task3">Прочитай 1-2 страницы тафсира Корана</label>
+                                </div>
+                            </li>
+                        </ul>
+                        
+                        <div class="day-progress">
+                            <div>Прогресс дня</div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" id="progress-day4"></div>
+                            </div>
+                            <div class="progress-text">
+                                <span>0%</span>
+                                <span id="progress-text-day4">0/3 выполнено</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- День 5 -->
+                    <div class="day-card fade-in-up" style="animation-delay: 0.5s;">
+                        <div class="day-header">
+                            <div>
+                                <div class="day-title">День 5</div>
+                                <div class="day-subtitle">Благие поступки</div>
+                            </div>
+                            <div style="color: var(--gold);">5/30</div>
+                        </div>
+                        
+                        <ul class="task-list">
+                            <li class="task-item">
+                                <input type="checkbox" class="task-checkbox" id="day5-task1">
+                                <div class="task-text">
+                                    <label for="day5-task1">Помолись за всех, кто тебя обидел</label>
+                                </div>
+                            </li>
+                            <li class="task-item">
+                                <input type="checkbox" class="task-checkbox" id="day5-task2">
+                                <div class="task-text">
+                                    <label for="day5-task2">Слушай Коран 30 минут</label>
+                                </div>
+                            </li>
+                            <li class="task-item">
+                                <input type="checkbox" class="task-checkbox" id="day5-task3">
+                                <div class="task-text">
+                                    <label for="day5-task3">Выучи 1 короткую дуа</label>
+                                </div>
+                            </li>
+                        </ul>
+                            <div class="day-progress">
+                            <div>Прогресс дня</div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" id="progress-day5"></div>
+                            </div>
+                            <div class="progress-text">
+                                <span>0%</span>
+                                <span id="progress-text-day5">0/3 выполнено</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- День 6 -->
+                    <div class="day-card fade-in-up" style="animation-delay: 0.6s;">
+                        <div class="day-header">
+                            <div>
+                                <div class="day-title">День 6</div>
+                                <div class="day-subtitle">Скрытые благие дела</div>
+                            </div>
+                            <div style="color: var(--gold);">6/30</div>
+                        </div>
+                        
+                        <ul class="task-list">
+                            <li class="task-item">
+                                <input type="checkbox" class="task-checkbox" id="day6-task1">
+                                <div class="task-text">
+                                    <label for="day6-task1">Дай милостыню так, чтобы никто не узнал</label>
+                                </div>
+                            </li>
+                            <li class="task-item">
+                                <input type="checkbox" class="task-checkbox" id="day6-task2">
+                                <div class="task-text">
+                                    <label for="day6-task2">Прочитай 100 раз "Ла иляха илля Аллах"</label>
+                                    <div class="counter-container">
+                                        <div class="counter-label">Счетчик:</div>
+                                        <div class="counter-controls">
+                                            <button class="counter-btn" onclick="decrementCounter('counter-day6-1')">-</button>
+                                            <div class="counter-value" id="counter-day6-1">0</div>
+                                            <button class="counter-btn" onclick="incrementCounter('counter-day6-1', 100)">+</button>
+                                            <div class="counter-target">/100</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="task-item">
+                                <input type="checkbox" class="task-checkbox" id="day6-task3">
+                                <div class="task-text">
+                                    <label for="day6-task3">Напиши 5 вещей, за которые благодарен Аллаху</label>
+                                </div>
+                            </li>
+                        </ul>
+                        
+                        <div class="day-progress">
+                            <div>Прогресс дня</div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" id="progress-day6"></div>
+                            </div>
+                            <div class="progress-text">
+                                <span>0%</span>
+                                <span id="progress-text-day6">0/3 выполнено</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- День 7 -->
+                    <div class="day-card fade-in-up" style="animation-delay: 0.7s;">
+                        <div class="day-header">
+                            <div>
+                                <div class="day-title">День 7</div>
+                                <div class="day-subtitle">Тахаджуд и искренность</div>
+                            </div>
+                            <div style="color: var(--gold);">7/30</div>
+                        </div>
+                        
+                        <ul class="task-list">
+                            <li class="task-item">
+                                <input type="checkbox" class="task-checkbox" id="day7-task1">
+                                <div class="task-text">
+                                    <label for="day7-task1">2 ракаата Тахаджуд</label>
+                                </div>
+                            </li>
+                            <li class="task-item">
+                                <input type="checkbox" class="task-checkbox" id="day7-task2">
+                                <div class="task-text">
+                                    <label for="day7-task2">Прочитай 300 раз "Астагфируллах"</label>
+                                    <div class="counter-container">
+                                        <div class="counter-label">Счетчик:</div>
+                                        <div class="counter-controls">
+                                            <button class="counter-btn" onclick="decrementCounter('counter-day7-1')">-</button>
+                                            <div class="counter-value" id="counter-day7-1">0</div>
+                                            <button class="counter-btn" onclick="incrementCounter('counter-day7-1', 300)">+</button>
+                                            <div class="counter-target">/300</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="task-item">
+                                <input type="checkbox" class="task-checkbox" id="day7-task3">
+                                <div class="task-text">
+                                    <label for="day7-task3">Соверши 1 доброе дело анонимно</label>
+                                </div>
+                            </li>
+                        </ul>
+                        
+                        <div class="day-progress">
+                            <div>Прогресс дня</div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" id="progress-day7"></div>
+                            </div>
+                            <div class="progress-text">
+                                <span>0%</span>
+                                <span id="progress-text-day7">0/3 выполнено</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="day-navigation">
+                    <button class="nav-btn" onclick="changeWeek('intro')">
+                        <span>←</span> Обзор
+                    </button>
+                    <button class="nav-btn" onclick="changeWeek('week2')">
+                        Неделя 2 <span>→</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Неделя 2 -->
+            <div class="slide" id="slide-week2">
+                <h2 style="text-align: center; margin-bottom: 20px; color: var(--gold);">Неделя 2: Укрепление связи с Аллахом</h2>
+                
+                <div class="days-grid">
+                    <!-- День 8 -->
+                    <div class="day-card fade-in-up" style="animation-delay: 0.1s;">
+                        <div class="day-header">
+                            <div>
+                                <div class="day-title">День 8</div>
+                                <div class="day-subtitle">Размышление о смерти</div>
+                            </div>
+                            <div style="color: var(--gold);">8/30</div>
+                        </div>
+                        
+                        <ul class="task-list">
+                            <li class="task-item">
+                                <input type="checkbox" class="task-checkbox" id="day8-task1">
+                                <div class="task-text">
+                                    <label for="day8-task1">5 минут тихо думай о смерти и Ахирате</label>
+                                </div>
+                            </li>
+                            <li class="task-item">
+                                <input type="checkbox" class="task-checkbox" id="day8-task2">
+                                <div class="task-text">
+                                    <label for="day8-task2">Прочитай 1 хадис о Судном Дне</label>
+                                </div>
+                            </li>
+                            <li class="task-item">
+                                <input type="checkbox" class="task-checkbox" id="day8-task3">
+                                <div class="task-text">
+                                    <label for="day8-task3">Соверши искреннюю дуа за 3 человека</label>
+                                </div>
+                            </li>
+                        </ul>
+                        
+                        <div class="day-progress">
+                            <div>Прогресс дня</div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" id="progress-day8"></div>
+                            </div>
+                            <div class="progress-text">
+                                <span>0%</span>
+                                <span id="progress-text-day8">0/3 выполнено</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- День 9 -->
+                    <div class="day-card fade-in-up" style="animation-delay: 0.2s;">
+                        <div class="day-header">
+                            <div>
+                                <div class="day-title">День 9</div>
+                                <div class="day-subtitle">Зикр и благодарность</div>
+                            </div>
+                            <div style="color: var(--gold);">9/30</div>
+                        </div>
+                        
+                        <ul class="task-list">
+                            <li class="task-item">
+                                <input type="checkbox" class="task-checkbox" id="day9-task1">
+                                <div class="task-text">
+                                    <label for="day9-task1">50 раз "СубханАллахи ва бихамдихи, субханАллахиль азым"</label>
+                                    <div class="counter-container">
+                                        <div class="counter-label">Счетчик:</div>
+                                        <div class="counter-controls">
+                                            <button class="counter-btn" onclick="decrementCounter('counter-day9-1')">-</button>
+                                            <div class="counter-value" id="counter-day9-1">0</div>
+                                            <button class="counter-btn" onclick="incrementCounter('counter-day9-1', 50)">+</button>
+                                            <div class="counter-target">/50</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="task-item">
+                                <input type="checkbox" class="task-checkbox" id="day9-task2">
+                                <div class="task-text">
+                                    <label for="day9-task2">Напиши 5 благ, которые дал Аллах</label>
+                                </div>
+                            </li>
+                            <li class="task-item">
+                                <input type="checkbox" class="task-checkbox" id="day9-task3">
+                                <div class="task-text">
+                                    <label for="day9-task3">Выучи новый ду'а</label>
+                                </div>
+                            </li>
+                        </ul>
+                        
+                        <div class="day-progress">
+                            <div>Прогресс дня</div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" id="progress-day9"></div>
+                            </div>
+                            <div class="progress-text">
+                                <span>0%</span>
+                                <span id="progress-text-day9">0/3 выполнено</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- День 10 -->
+                    <div class="day-card fade-in-up" style="animation-delay: 0.3s;">
+                        <div class="day-header">
+                            <div>
+                                <div class="day-title">День 10</div>
+                                <div class="day-subtitle">Дуа за умерших и Коран</div>
+                            </div>
+                            <div style="color: var(--gold);">10/30</div>
+                        </div>
+                        
+                        <ul class="task-list">
+                            <li class="task-item">
+                                <input type="checkbox" class="task-checkbox" id="day10-task1">
+                                <div class="task-text">
+                                    <label for="day10-task1">Прочитай Суру Аль-Мульк перед сном</label>
+                                </div>
+                            </li>
+                            <li class="task-item">
+                                <input type="checkbox" class="task-checkbox" id="day10-task2">
+                                <div class="task-text">
+                                    <label for="day10-task2">Сделай дуа за всех умерших</label>
+                                </div>
+                            </li>
+                            <li class="task-item">
+                                <input type="checkbox" class="task-checkbox" id="day10-task3">
+                                <div class="task-text">
+                                    <label for="day10-task3">Научи кого-то одной исламской истине</label>
+                                </div>
+                            </li>
+                        </ul>
+                        
+                        <div class="day-progress">
+                            <div>Прогресс дня</div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" id="progress-day10"></div>
+                            </div>
+                            <div class="progress-text">
+                                <span>0%</span>
+                                <span id="progress-text-day10">0/3 выполнено</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- День 11 -->
+                    <div class="day-card fade-in-up" style="animation-delay: 0.4s;">
+                        <div class="day-header">
+                            <div>
+                                <div class="day-title">День 11</div>
+                                <div class="day-subtitle">Азкары и отказ от вредного</div>
+                            </div>
+                            <div style="color: var(--gold);">11/30</div>
+                        </div>
+                        
+                        <ul class="task-list">
+                            <li class="task-item">
+                                <input type="checkbox" class="task-checkbox" id="day11-task1">
+                                <div class="task-text">
+                                    <label for="day11-task1">Повторяй весь день: "Ла хаула ва ла куввата илля биллях"</label>
+                                </div>
+                            </li>
+                            <li class="task-item">
+                                <input type="checkbox" class="task-checkbox" id="day11-task2">
+                                <div class="task-text">
+                                    <label for="day11-task2">Прочитай хадис из Аль-Бухари о благом нраве</label>
+                                </div>
+                            </li>
+                            <li class="task-item">
+                                <input type="checkbox" class="task-checkbox" id="day11-task3">
+                                <div class="task-text">
+                                    <label for="day11-task3">Откажись от одного бесполезного действия (например, соцсети на 3 часа)</label>
+                                </div>
+                            </li>
+                        </ul>
+                        
+                        <div class="day-progress">
+                            <div>Прогресс дня</div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" id="progress-day11"></div>
+                            </div>
+                            <div class="progress-text">
+                                <span>0%</span>
+                                <span id="progress-text-day11">0/3 выполнено</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- День 12 -->
+                    <div class="day-card fade-in-up" style="animation-delay: 0.5s;">
+                        <div class="day-header">
+                            <div>
+                                <div class="day-title">День 12</div>
+                                <div class="day-subtitle">Понимание Корана</div>
+                            </div>
+                            <div style="color: var(--gold);">12/30</div>
+                        </div>
+                        
+                        <ul class="task-list">
+                            <li class="task-item">
+                                <input type="checkbox" class="task-checkbox" id="day12-task1">
+                                <div class="task-text">
+                                    <label for="day12-task1">Прочитай 2-4 страницы Корана с тафсиром</label>
+                                </div>
+                            </li>
+                            <li class="task-item">
+                                <input type="checkbox" class="task-checkbox" id="day12-task2">
+                                <div class="task-text">
+                                    <label for="day12-task2">Подари что-то кому-то без причины</label>
+                                </div>
+                            </li>
+                            <li class="task-item">
+                                <input type="checkbox" class="task-checkbox" id="day12-task3">
+                                <div class="task-text">
+                                    <label for="day12-task3">Сделай 1 скрытое благодеяние</label>
+                                </div>
+                            </li>
+                        </ul>
+                        
+                        <div class="day-progress">
+                            <div>Прогресс дня</div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" id="progress-day12"></div>
+                            </div>
+                            <div class="progress-text">
+                                <span>0%</span>
+                                <span id="progress-text-day12">0/3 выполнено</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- День 13 -->
+                    <div class="day-card fade-in-up" style="animation-delay: 0.6s;">
+                        <div class="day-header">
+                            <div>
+                                <div class="day-title">День 13</div>
+                                <div class="day-subtitle">Дуа за умму</div>
+                            </div>
+                            <div style="color: var(--gold);">13/30</div>
+                        </div>
+                        
+                        <ul class="task-list">
+                            <li class="task-item">
+                                <input type="checkbox" class="task-checkbox" id="day13-task1">
+                                <div class="task-text">
+                                    <label for="day13-task1">Включи в молитву всех мусульман</label>
+                                </div>
+                            </li>
+                            <li class="task-item">
+                                <input type="checkbox" class="task-checkbox" id="day13-task2">
+                                <div class="task-text">
+                                    <label for="day13-task2">100 раз "Ла иляха илля Аллаху вахдаху ла шарика ляху..."</label>
+                                    <div class="counter-container">
+                                        <div class="counter-label">Счетчик:</div>
+                                        <div class="counter-controls">
+                                            <button class="counter-btn" onclick="decrementCounter('counter-day13-1')">-</button>
+                                            <div class="counter-value" id="counter-day13-1">0</div>
+                                            <button class="counter-btn" onclick="incrementCounter('counter-day13-1', 100)">+</button>
+                                            <div class="counter-target">/100</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="task-item">
+                                <input type="checkbox" class="task-checkbox" id="day13-task3">
+                                <div class="task-text">
+                                    <label for="day13-task3">Помоги кому-то физически</label>
+                                </div>
+                            </li>
+                        </ul>
+                        
+                        <div class="day-progress">
+                            <div>Прогресс дня</div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" id="progress-day13"></div>
+                            </div>
+                            <div class="progress-text">
+                                <span>0%</span>
+                                <span id="progress-text-day13">0/3 выполнено</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- День 14 -->
+                    <div class="day-card fade-in-up" style="animation-delay: 0.7s;">
+                        <div class="day-header">
+                            <div>
+                                <div class="day-title">День 14</div>
+                                <div class="day-subtitle">Аль-Кахф и осознание Аллаха</div>
+                            </div>
+                            <div style="color: var(--gold);">14/30</div>
+                        </div>
+                        
+                        <ul class="task-list">
+                            <li class="task-item">
+                                <input type="checkbox" class="task-checkbox" id="day14-task1">
+                                <div class="task-text">
+                                    <label for="day14-task1">Прочитай Суру Аль-Кахф (если можешь)</label>
+                                </div>
+                            </li>
+                            <li class="task-item">
+                                <input type="checkbox" class="task-checkbox" id="day14-task2">
+                                <div class="task-text">
+                                    <label for="day14-task2">Совершай малый зикр весь день (про себя "Аллах")</label>
+                                </div>
+                            </li>
+                            <li class="task-item">
+                                <input type="checkbox" class="task-checkbox" id="day14-task3">
+                                <div class="task-text">
+                                    <label for="day14-task3">Выучи 1 новый хадис</label>
+                                </div>
+                            </li>
+                        </ul>
+                        
+                        <div class="day-progress">
+                            <div>Прогресс дня</div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" id="progress-day14"></div>
+                            </div>
+                            <div class="progress-text">
+                                <span>0%</span>
+                                <span id="progress-text-day14">0/3 выполнено</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="day-navigation">
+                    <button class="nav-btn" onclick="changeWeek('week1')">
+                        <span>←</span> Неделя 1
+                    </button>
+                    <button class="nav-btn" onclick="changeWeek('week3')">
+                        Неделя 3 <span>→</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Неделя 3 -->
+            <div class="slide" id="slide-week3">
+                <h2 style="text-align: center; margin-bottom: 20px; color: var(--gold);">Неделя 3: Духовная дисциплина</h2>
+                
+                <div class="days-grid">
+                    <!-- День 15 -->
+                    <div class="day-card fade-in-up" style="animation-delay: 0.1s;">
+                        <div class="day-header">
+                            <div>
+                                <div class="day-title">День 15</div>
+                                <div class="day-subtitle">Покаяние и мольбы</div>
+                            </div>
+                            <div style="color: var(--gold);">15/30</div>
+                        </div>
+                        
+                        <ul class="task-list">
+                            <li class="task-item">
+                                <input type="checkbox" class="task-checkbox" id="day15-task1">
+                                <div class="task-text">
+                                    <label for="day15-task1">500 раз "Астагфируллах"</label>
+                                    <div class="counter-container">
+                                        <div class="counter-label">Счетчик:</div>
+                                        <div class="counter-controls">
+                                            <button class="counter-btn" onclick="decrementCounter('counter-day15-1')">-</button>
+                                            <div class="counter-value" id="counter-day15-1">0</div>
+                                            <button class="counter-btn" onclick="incrementCounter('counter-day15-1', 500)">+</button>
+                                            <div class="counter-target">/500</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="task-item">
+                                <input type="checkbox" class="task-checkbox" id="day15-task2">
+                                <div class="task-text">
+                                    <label for="day15-task2">Соверши дуа между азаном и икамой</label>
+                                </div>
+                            </li>
+                            <li class="task-item">
+                                <input type="checkbox" class="task-checkbox" id="day15-task3">
+                                <div class="task-text">
+                                    <label for="day15-task3">Постарайся не говорить плохого весь день</label>
+                                </div>
+                            </li>
+                        </ul>
+                        
+                        <div class="day-progress">
+                            <div>Прогресс дня</div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" id="progress-day15"></div>
+                            </div>
+                            <div class="progress-text">
+                                <span>0%</span>
+                                <span id="progress-text-day15">0/3 выполнено</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- День 16-20 (объединенный блок) -->
+                    <div class="day-card fade-in-up" style="animation-delay: 0.2s; grid-column: span 2;">
+                        <div class="day-header">
+                            <div>
+                                <div class="day-title">День 16-20</div>
+                                <div class="day-subtitle">Глубокое поклонение</div>
+                            </div>
+                            <div style="color: var(--gold);">16-20/30</div>
+                        </div>
+                        
+                        <ul class="task-list">
+                            <li class="task-item">
+                                <input type="checkbox" class="task-checkbox" id="day16-20-task1">
+                                <div class="task-text">
+                                    <label for="day16-20-task1">Читай больше Корана, старайся запоминать аяты</label>
+                                    <div style="margin-top: 10px; font-size: 0.9rem; color: var(--light); opacity: 0.8;">
+                                        Отметь дни, когда ты читал Коран и запоминал аяты:
+                                    </div>
+                                    <div style="display: flex; gap: 10px; margin-top: 5px; flex-wrap: wrap;">
+                                        <label style="display: flex; align-items: center; gap: 5px;">
+                                            <input type="checkbox" class="task-checkbox">
+                                            <span>День 16</span>
+                                        </label>
+                                        <label style="display: flex; align-items: center; gap: 5px;">
+                                            <input type="checkbox" class="task-checkbox">
+                                            <span>День 17</span>
+                                        </label>
+                                        <label style="display: flex; align-items: center; gap: 5px;">
+                                            <input type="checkbox" class="task-checkbox">
+                                            <span>День 18</span>
+                                        </label>
+                                        <label style="display: flex; align-items: center; gap: 5px;">
+                                            <input type="checkbox" class="task-checkbox">
+                                            <span>День 19</span>
+                                        </label>
+                                        <label style="display: flex; align-items: center; gap: 5px;">
+                                            <input type="checkbox" class="task-checkbox">
+                                            <span>День 20</span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="task-item">
+                                <input type="checkbox" class="task-checkbox" id="day16-20-task2">
+                                <div class="task-text">
+                                    <label for="day16-20-task2">Проводь Тахаджуд-намаз хотя бы 2 дня</label>
+                                    <div style="margin-top: 10px; font-size: 0.9rem; color: var(--light); opacity: 0.8;">
+                                        Отметь дни, когда ты совершал Тахаджуд:
+                                    </div>
+                                    <div style="display: flex; gap: 10px; margin-top: 5px; flex-wrap: wrap;">
+                                        <label style="display: flex; align-items: center; gap: 5px;">
+                                            <input type="checkbox" class="task-checkbox">
+                                            <span>День 16</span>
+                                        </label>
+                                        <label style="display: flex; align-items: center; gap: 5px;">
+                                            <input type="checkbox" class="task-checkbox">
+                                            <span>День 17</span>
+                                        </label>
+                                        <label style="display: flex; align-items: center; gap: 5px;">
+                                            <input type="checkbox" class="task-checkbox">
+                                            <span>
+                                              <span>День 18</span>
+                                        </label>
+                                        <label style="display: flex; align-items: center; gap: 5px;">
+                                            <input type="checkbox" class="task-checkbox">
+                                            <span>День 19</span>
+                                        </label>
+                                        <label style="display: flex; align-items: center; gap: 5px;">
+                                            <input type="checkbox" class="task-checkbox">
+                                            <span>День 20</span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="task-item">
+                                <input type="checkbox" class="task-checkbox" id="day16-20-task3">
+                                <div class="task-text">
+                                    <label for="day16-20-task3">Сделай дуа после каждого намаза</label>
+                                    <div style="margin-top: 10px; font-size: 0.9rem; color: var(--light); opacity: 0.8;">
+                                        Отметь дни, когда ты делал дуа после каждого намаза:
+                                    </div>
+                                    <div style="display: flex; gap: 10px; margin-top: 5px; flex-wrap: wrap;">
+                                        <label style="display: flex; align-items: center; gap: 5px;">
+                                            <input type="checkbox" class="task-checkbox">
+                                            <span>День 16</span>
+                                        </label>
+                                        <label style="display: flex; align-items: center; gap: 5px;">
+                                            <input type="checkbox" class="task-checkbox">
+                                            <span>День 17</span>
+                                        </label>
+                                        <label style="display: flex; align-items: center; gap: 5px;">
+                                            <input type="checkbox" class="task-checkbox">
+                                            <span>День 18</span>
+                                        </label>
+                                        <label style="display: flex; align-items: center; gap: 5px;">
+                                            <input type="checkbox" class="task-checkbox">
+                                            <span>День 19</span>
+                                        </label>
+                                        <label style="display: flex; align-items: center; gap: 5px;">
+                                            <input type="checkbox" class="task-checkbox">
+                                            <span>День 20</span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                        
+                        <div class="day-progress">
+                            <div>Прогресс дней 16-20</div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" id="progress-day16-20"></div>
+                            </div>
+                            <div class="progress-text">
+                                <span>0%</span>
+                                <span id="progress-text-day16-20">0/3 выполнено</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- День 21 -->
+                    <div class="day-card fade-in-up" style="animation-delay: 0.3s;">
+                        <div class="day-header">
+                            <div>
+                                <div class="day-title">День 21</div>
+                                <div class="day-subtitle">Подготовка к последним 10 дням</div>
+                            </div>
+                            <div style="color: var(--gold);">21/30</div>
+                        </div>
+                        
+                        <ul class="task-list">
+                            <li class="task-item">
+                                <input type="checkbox" class="task-checkbox" id="day21-task1">
+                                <div class="task-text">
+                                    <label for="day21-task1">Составь план для последних 10 дней</label>
+                                </div>
+                            </li>
+                            <li class="task-item">
+                                <input type="checkbox" class="task-checkbox" id="day21-task2">
+                                <div class="task-text">
+                                    <label for="day21-task2">Прочитай о Ляйлятуль-Кадр</label>
+                                </div>
+                            </li>
+                            <li class="task-item">
+                                <input type="checkbox" class="task-checkbox" id="day21-task3">
+                                <div class="task-text">
+                                    <label for="day21-task3">Сделай дуа о принятии твоего поста</label>
+                                </div>
+                            </li>
+                        </ul>
+                        
+                        <div class="day-progress">
+                            <div>Прогресс дня</div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" id="progress-day21"></div>
+                            </div>
+                            <div class="progress-text">
+                                <span>0%</span>
+                                <span id="progress-text-day21">0/3 выполнено</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="day-navigation">
+                    <button class="nav-btn" onclick="changeWeek('week2')">
+                        <span>←</span> Неделя 2
+                    </button>
+                    <button class="nav-btn" onclick="changeWeek('week4')">
+                        Неделя 4 <span>→</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Неделя 4 -->
+            <div class="slide" id="slide-week4">
+                <h2 style="text-align: center; margin-bottom: 20px; color: var(--gold);">Неделя 4: Поиск Ляйлятуль-Кадр</h2>
+                
+                <div class="days-grid">
+                    <!-- День 22 -->
+                    <div class="day-card fade-in-up" style="animation-delay: 0.1s;">
+                        <div class="day-header">
+                            <div>
+                                <div class="day-title">День 22</div>
+                                <div class="day-subtitle">Начало поиска Ляйлятуль-Кадр</div>
+                            </div>
+                            <div style="color: var(--gold);">22/30</div>
+                        </div>
+                        
+                        <ul class="task-list">
+                            <li class="task-item">
+                                <input type="checkbox" class="task-checkbox" id="day22-task1">
+                                <div class="task-text">
+                                    <label for="day22-task1">Увеличь намаз ночью (минимум 4 ракаата)</label>
+                                </div>
+                            </li>
+                            <li class="task-item">
+                                <input type="checkbox" class="task-checkbox" id="day22-task2">
+                                <div class="task-text">
+                                    <label for="day22-task2">Читай больше Корана (минимум 1 джуз)</label>
+                                </div>
+                            </li>
+                            <li class="task-item">
+                                <input type="checkbox" class="task-checkbox" id="day22-task3">
+                                <div class="task-text">
+                                    <label for="day22-task3">Дуа: "Аллахумма иннака афуввун тухиббуль афва фа'фу анни"</label>
+                                </div>
+                            </li>
+                        </ul>
+                        
+                        <div class="day-progress">
+                            <div>Прогресс дня</div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" id="progress-day22"></div>
+                            </div>
+                            <div class="progress-text">
+                                <span>0%</span>
+                                <span id="progress-text-day22">0/3 выполнено</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- День 23-29 (объединенный блок) -->
+                    <div class="day-card fade-in-up" style="animation-delay: 0.2s; grid-column: span 2;">
+                        <div class="day-header">
+                            <div>
+                                <div class="day-title">День 23-29</div>
+                                <div class="day-subtitle">Поиск Ляйлятуль-Кадр</div>
+                            </div>
+                            <div style="color: var(--gold);">23-29/30</div>
+                        </div>
+                        
+                        <ul class="task-list">
+                            <li class="task-item">
+                                <input type="checkbox" class="task-checkbox" id="day23-29-task1">
+                                <div class="task-text">
+                                    <label for="day23-29-task1">Ежедневно совершай Тахаджуд (минимум 4 ракаата)</label>
+                                    <div style="margin-top: 10px; font-size: 0.9rem; color: var(--light); opacity: 0.8;">
+                                        Отметь дни, когда ты совершал Тахаджуд:
+                                    </div>
+                                    <div style="display: flex; gap: 10px; margin-top: 5px; flex-wrap: wrap;">
+                                        <label style="display: flex; align-items: center; gap: 5px;">
+                                            <input type="checkbox" class="task-checkbox">
+                                            <span>День 23</span>
+                                        </label>
+                                        <label style="display: flex; align-items: center; gap: 5px;">
+                                            <input type="checkbox" class="task-checkbox">
+                                            <span>День 25</span>
+                                        </label>
+                                        <label style="display: flex; align-items: center; gap: 5px;">
+                                            <input type="checkbox" class="task-checkbox">
+                                            <span>День 27</span>
+                                        </label>
+                                        <label style="display: flex; align-items: center; gap: 5px;">
+                                            <input type="checkbox" class="task-checkbox">
+                                            <span>День 29</span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="task-item">
+                                <input type="checkbox" class="task-checkbox" id="day23-29-task2">
+                                <div class="task-text">
+                                    <label for="day23-29-task2">Читай Коран каждую ночь (минимум 1 джуз)</label>
+                                    <div style="margin-top: 10px; font-size: 0.9rem; color: var(--light); opacity: 0.8;">
+                                        Отметь дни, когда ты читал минимум 1 джуз:
+                                    </div>
+                                    <div style="display: flex; gap: 10px; margin-top: 5px; flex-wrap: wrap;">
+                                        <label style="display: flex; align-items: center; gap: 5px;">
+                                            <input type="checkbox" class="task-checkbox">
+                                            <span>День 23</span>
+                                        </label>
+                                        <label style="display: flex; align-items: center; gap: 5px;">
+                                            <input type="checkbox" class="task-checkbox">
+                                            <span>День 25</span>
+                                        </label>
+                                        <label style="display: flex; align-items: center; gap: 5px;">
+                                            <input type="checkbox" class="task-checkbox">
+                                            <span>День 27</span>
+                                        </label>
+                                        <label style="display: flex; align-items: center; gap: 5px;">
+                                            <input type="checkbox" class="task-checkbox">
+                                            <span>День 29</span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="task-item">
+                                <input type="checkbox" class="task-checkbox" id="day23-29-task3">
+                                <div class="task-text">
+                                    <label for="day23-29-task3">Делай дуа каждую ночь: "Аллахумма иннака афуввун тухиббуль афва фа'фу анни"</label>
+                                    <div style="margin-top: 10px; font-size: 0.9rem; color: var(--light); opacity: 0.8;">
+                                        Отметь дни, когда ты делал это дуа:
+                                    </div>
+                                    <div style="display: flex; gap: 10px; margin-top: 5px; flex-wrap: wrap;">
+                                        <label style="display: flex; align-items: center; gap: 5px;">
+                                            <input type="checkbox" class="task-checkbox">
+                                            <span>День 23</span>
+                                        </label>
+                                        <label style="display: flex; align-items: center; gap: 5px;">
+                                            <input type="checkbox" class="task-checkbox">
+                                            <span>День 25</span>
+                                        </label>
+                                        <label style="display: flex; align-items: center; gap: 5px;">
+                                            <input type="checkbox" class="task-checkbox">
+                                            <span>День 27</span>
+                                        </label>
+                                        <label style="display: flex; align-items: center; gap: 5px;">
+                                            <input type="checkbox" class="task-checkbox">
+                                            <span>День 29</span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                        
+                        <div class="day-progress">
+                            <div>Прогресс дней 23-29</div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" id="progress-day23-29"></div>
+                            </div>
+                            <div class="progress-text">
+                                <span>0%</span>
+                                <span id="progress-text-day23-29">0/3 выполнено</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- День 30 -->
+                    <div class="day-card fade-in-up" style="animation-delay: 0.3s;">
+                        <div class="day-header">
+                            <div>
+                                <div class="day-title">День 30</div>
+                                <div class="day-subtitle">Завершение Рамадана</div>
+                            </div>
+                            <div style="color: var(--gold);">30/30</div>
+                        </div>
+                            <ul class="task-list">
+                            <li class="task-item">
+                                <input type="checkbox" class="task-checkbox" id="day30-task1">
+                                <div class="task-text">
+                                    <label for="day30-task1">Соверши специальную дуа благодарности</label>
+                                </div>
+                            </li>
+                            <li class="task-item">
+                                <input type="checkbox" class="task-checkbox" id="day30-task2">
+                                <div class="task-text">
+                                    <label for="day30-task2">Подготовься к Ид аль-Фитр</label>
+                                </div>
+                            </li>
+                            <li class="task-item">
+                                <input type="checkbox" class="task-checkbox" id="day30-task3">
+                                <div class="task-text">
+                                    <label for="day30-task3">Составь план продолжения благих дел после Рамадана</label>
+                                </div>
+                            </li>
+                        </ul>
+                        
+                        <div class="day-progress">
+                            <div>Прогресс дня</div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" id="progress-day30"></div>
+                            </div>
+                            <div class="progress-text">
+                                <span>0%</span>
+                                <span id="progress-text-day30">0/3 выполнено</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="day-navigation">
+                    <button class="nav-btn" onclick="changeWeek('week3')">
+                        <span>←</span> Неделя 3
+                    </button>
+                    <button class="nav-btn" onclick="changeWeek('summary')">
+                        Итоги <span>→</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Итоги -->
+            <div class="slide" id="slide-summary">
+                <h2 style="text-align: center; margin-bottom: 30px; color: var(--gold);">Итоги вашего пути</h2>
+                
+                <div class="summary-container">
+                    <div class="summary-card fade-in-up" style="animation-delay: 0.1s;">
+                        <h3>Общий прогресс</h3>
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="progress-total" style="width: 0%;"></div>
+                        </div>
+                        <div class="progress-text">
+                            <span>0%</span>
+                            <span id="progress-text-total">0/30 дней выполнено</span>
+                        </div>
+                    </div>
+                    
+                    <div class="summary-card fade-in-up" style="animation-delay: 0.2s;">
+                        <h3>Статистика по неделям</h3>
+                        <div class="week-stats">
+                            <div class="week-stat-item">
+                                <div class="week-stat-label">Неделя 1</div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" id="progress-week1" style="width: 0%;"></div>
+                                </div>
+                                <div class="progress-text">0%</div>
+                            </div>
+                            <div class="week-stat-item">
+                                <div class="week-stat-label">Неделя 2</div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" id="progress-week2" style="width: 0%;"></div>
+                                </div>
+                                <div class="progress-text">0%</div>
+                            </div>
+                            <div class="week-stat-item">
+                                <div class="week-stat-label">Неделя 3</div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" id="progress-week3" style="width: 0%;"></div>
+                                </div>
+                                <div class="progress-text">0%</div>
+                            </div>
+                            <div class="week-stat-item">
+                                <div class="week-stat-label">Неделя 4</div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" id="progress-week4" style="width: 0%;"></div>
+                                </div>
+                                <div class="progress-text">0%</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="summary-card fade-in-up" style="animation-delay: 0.3s;">
+                        <h3>Достижения</h3>
+                        <div class="achievements-grid">
+                            <div class="achievement-item" id="achievement-1">
+                                <div class="achievement-icon">🌙</div>
+                                <div class="achievement-name">Начало пути</div>
+                                <div class="achievement-desc">Выполнил первую неделю</div>
+                            </div>
+                            <div class="achievement-item locked" id="achievement-2">
+                                <div class="achievement-icon">📖</div>
+                                <div class="achievement-name">Знаток Корана</div>
+                                <div class="achievement-desc">Читал Коран 15+ дней</div>
+                            </div>
+                            <div class="achievement-item locked" id="achievement-3">
+                                <div class="achievement-icon">🤲</div>
+                                <div class="achievement-name">Ночной молящийся</div>
+                                <div class="achievement-desc">Совершил 10+ Тахаджудов</div>
+                            </div>
+                            <div class="achievement-item locked" id="achievement-4">
+                                <div class="achievement-icon">💎</div>
+                                <div class="achievement-name">Искатель Кадра</div>
+                                <div class="achievement-desc">Выполнил все задания последней недели</div>
+                            </div>
+                            <div class="achievement-item locked" id="achievement-5">
+                                <div class="achievement-icon">✨</div>
+                                <div class="achievement-name">Мастер Рамадана</div>
+                                <div class="achievement-desc">Выполнил 90% всех заданий</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="summary-card fade-in-up" style="animation-delay: 0.4s;">
+                        <h3>Что дальше?</h3>
+                        <p>
+                            Рамадан подходит к концу, но ваш духовный путь продолжается. Вот несколько советов, чтобы сохранить благие привычки:
+                        </p>
+                        <ul class="next-steps-list">
+                            <li>Продолжайте читать Коран каждый день, даже если это будет всего несколько аятов</li>
+                            <li>Соблюдайте 6 дней поста в месяце Шавваль</li>
+                            <li>Сохраните привычку совершать дополнительные молитвы</li>
+                            <li>Продолжайте давать садака регулярно</li>
+                            <li>Не забывайте делать зикр утром и вечером</li>
+                        </ul>
+                        <div style="text-align: center; margin-top: 20px;">
+                            <button class="nav-btn" onclick="resetProgress()">
+                                Начать заново
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="day-navigation">
+                    <button class="nav-btn" onclick="changeWeek('week4')">
+                        <span>←</span> Неделя 4
+                    </button>
+                    <button class="nav-btn" onclick="changeWeek('intro')">
+                        На главную <span>→</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Функция для переключения между неделями
+        function changeWeek(weekId) {
+            // Убираем активный класс у всех кнопок
+            document.querySelectorAll('.week-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            // Добавляем активный класс к выбранной кнопке
+            const activeBtn = document.querySelector(`.week-btn[data-week="${weekId}"]`);
+            if (activeBtn) activeBtn.classList.add('active');
+            
+            // Убираем активный класс у всех слайдов
+            document.querySelectorAll('.slide').forEach(slide => {
+                slide.classList.remove('active');
+            });
+            
+            // Добавляем активный класс к выбранному слайду
+            document.getElementById(`slide-${weekId}`).classList.add('active');
+            
+            // Прокручиваем страницу вверх
+            window.scrollTo(0, 0);
+        }
+        
+        // Функция для увеличения счетчика
+        function incrementCounter(counterId, maxValue) {
+            const counterEl = document.getElementById(counterId);
+            let currentValue = parseInt(counterEl.textContent);
+            if (currentValue < maxValue) {
+                counterEl.textContent = currentValue + 1;
+                updateProgressBars();
+            }
+        }
+        
+        // Функция для уменьшения счетчика
+        function decrementCounter(counterId) {
+            const counterEl = document.getElementById(counterId);
+            let currentValue = parseInt(counterEl.textContent);
+            if (currentValue > 0) {
+                counterEl.textContent = currentValue - 1;
+                updateProgressBars();
+            }
+        }
+        
+        // Функция для обновления прогресс-баров
+        function updateProgressBars() {
+            // Здесь будет логика обновления прогресс-баров на основе выполненных задач
+            // Для примера просто обновим на основе чекбоксов
+            
+            // День 1
+            updateDayProgress('day1', 4);
+            
+            // День 2
+            updateDayProgress('day2', 3);
+            
+            // И так далее для всех дней...
+            updateDayProgress('day3', 3);
+            updateDayProgress('day4', 3);
+            updateDayProgress('day5', 3);
+            updateDayProgress('day6', 3);
+            updateDayProgress('day7', 3);
+            updateDayProgress('day8', 3);
+            updateDayProgress('day9', 3);
+            updateDayProgress('day10', 3);
+            updateDayProgress('day11', 3);
+            updateDayProgress('day12', 3);
+            updateDayProgress('day13', 3);
+            updateDayProgress('day14', 3);
+            updateDayProgress('day15', 3);
+            updateDayProgress('day16-20', 3);
+            updateDayProgress('day21', 3);
+            updateDayProgress('day22', 3);
+            updateDayProgress('day23-29', 3);
+            updateDayProgress('day30', 3);
+            
+            // Обновляем общий прогресс
+            updateTotalProgress();
+        }
+        
+        // Функция для обновления прогресса дня
+        function updateDayProgress(dayId, totalTasks) {
+            const checkboxes = document.querySelectorAll(`#${dayId}-task1, #${dayId}-task2, #${dayId}-task3`);
+            let completedTasks = 0;
+            
+            checkboxes.forEach(checkbox => {
+                if (checkbox && checkbox.checked) {
+                    completedTasks++;
+                }
+            });
+            
+            const progressPercent = totalTasks > 0 ? (completedTasks / totalTasks) * 100 : 0;
+            const progressBar = document.getElementById(`progress-${dayId}`);
+            const progressText = document.getElementById(`progress-text-${dayId}`);
+            
+            if (progressBar) {
+                progressBar.style.width = `${progressPercent}%`;
+            }
+            
+            if (progressText) {
+                progressText.textContent = `${completedTasks}/${totalTasks} выполнено`;
+            }
+            
+            // Обновляем цвет процента
+            const percentElement = progressBar ? progressBar.parentElement.previousElementSibling.querySelector('span') : null;
+            if (percentElement) {
+                percentElement.textContent = `${Math.round(progressPercent)}%`;
+            }
+        }
+        
+        // Функция для обновления общего прогресса
+        function updateTotalProgress() {
+            // Здесь будет логика расчета общего прогресса
+            // Для примера просто установим случайное значение
+            const totalProgress = Math.floor(Math.random() * 100);
+            const progressBar = document.getElementById('progress-total');
+            const progressText = document.getElementById('progress-text-total');
+            
+            if (progressBar) {
+                progressBar.style.width = `${totalProgress}%`;
+            }
+            
+            if (progressText) {
+                const completedDays = Math.floor(totalProgress / 100 * 30);
+                progressText.textContent = `${completedDays}/30 дней выполнено`;
+            }
+            
+            // Обновляем прогресс по неделям
+            for (let i = 1; i <= 4; i++) {
+                const weekProgress = Math.floor(Math.random() * 100);
+                const weekProgressBar = document.getElementById(`progress-week${i}`);
+                if (weekProgressBar) {
+                    weekProgressBar.style.width = `${weekProgress}%`;
+                }
+                
+                const weekPercentElement = weekProgressBar ? weekProgressBar.parentElement.nextElementSibling : null;
+                if (weekPercentElement) {
+                    weekPercentElement.textContent = `${weekProgress}%`;
+                }
+            }
+            
+            // Обновляем достижения
+            updateAchievements(totalProgress);
+        }
+        
+        // Функция для обновления достижений
+        function updateAchievements(totalProgress) {
+            // Разблокируем достижения на основе прогресса
+            if (totalProgress > 20) {
+                document.getElementById('achievement-1').classList.remove('locked');
+            }
+            
+            if (totalProgress > 40) {
+                document.getElementById('achievement-2').classList.remove('locked');
+            }
+            
+            if (totalProgress > 60) {
+                document.getElementById('achievement-3').classList.remove('locked');
+            }
+            
+            if (totalProgress > 80) {
+                document.getElementById('achievement-4').classList.remove('locked');
+            }
+            
+            if (totalProgress > 90) {
+                  document.getElementById('achievement-5').classList.remove('locked');
+            }
+        }
+        
+        // Функция для сброса прогресса
+        function resetProgress() {
+            if (confirm('Вы уверены, что хотите сбросить весь прогресс?')) {
+                // Снимаем все чекбоксы
+                document.querySelectorAll('.task-checkbox').forEach(checkbox => {
+                    checkbox.checked = false;
+                });
+                
+                // Обнуляем все счетчики
+                document.querySelectorAll('.counter-value').forEach(counter => {
+                    counter.textContent = '0';
+                });
+                
+                // Обновляем прогресс-бары
+                updateProgressBars();
+                
+                // Возвращаемся на главную
+                changeWeek('intro');
+                
+                // Показываем сообщение
+                alert('Прогресс успешно сброшен. Вы можете начать заново!');
+            }
+        }
+        
+        // Инициализация при загрузке страницы
+        document.addEventListener('DOMContentLoaded', function() {
+            // Показываем первый слайд
+            changeWeek('intro');
+            
+            // Добавляем обработчики для чекбоксов
+            document.querySelectorAll('.task-checkbox').forEach(checkbox => {
+                checkbox.addEventListener('change', updateProgressBars);
+            });
+            
+            // Инициализируем прогресс-бары
+            updateProgressBars();
+            
+            // Добавляем анимацию для карточек при прокрутке
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            document.querySelectorAll('.fade-in-up').forEach(card => {
+                observer.observe(card);
+            });
+        });
+    </script>
+</body>
+</html>
+        
+                    
+                
